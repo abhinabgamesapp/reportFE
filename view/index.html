@@ -1,0 +1,298 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="container">
+        <!--Block Modal -->
+        <div class="modal fade" id="blockModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="blockModal">Are you sure !!!!!</h5>
+                        <img height="40px" width="40px" src="https://media.tenor.com/uiGdXpO3wosAAAAi/sad-gif.gif">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <form>
+                            <div class="form-group">
+                                <label for="blockModalMsg">Write the reason</label>
+                                <textarea class="form-control" id="blockModalMsg" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="blockModalAuthKey">Enter Auth Key</label>
+                                <input type="password" class="form-control" id="blockModalAuthKey"
+                                    placeholder="Authentication">
+                            </div>
+                            <button type="submit" class="btn btn-danger m-2" id="blockModalBtn">BLOCK</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <h4>Decision Changed?? <img height="40px" width="40px"
+                                src="https://media.tenor.com/PqWloRzw0R0AAAAj/facebook-emoji.gif"></h4>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--UNBlock Modal -->
+        <div class="modal fade" id="unblockModal" tabindex="-1" aria-labelledby="unblockModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="unblockModal">Yaay!! I am back again.</h5>
+                        <img height="40px" width="40px" src="https://media.tenor.com/5mY0_OI1MSUAAAAi/peach-cat.gif">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Write the reason</label>
+                                <textarea class="form-control" id="unblockMsg" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Enter Auth Key</label>
+                                <input type="password" class="form-control" id="unblockAuth"
+                                    placeholder="Authentication">
+                            </div>
+                            <button type="submit" class="btn btn-primary m-2" id="unblockModalBtn">UNBLOCK</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <h4>No!!!! Don't do that please. <img height="40px" width="40px"
+                                src="https://media.tenor.com/e3rrT2AEEbEAAAAi/no.gif"></h4>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--API DOCUMENTATIOn Modal -->
+        <div class="modal fade bd-example-modal-xl" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">PRODUCT REQUIREMENT</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered border my-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">API</th>
+                                    <th scope="col">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row" style="font-size: small;">
+                                        https://hello-world-tiny-waterfall-cc7a.abinab.workers.dev</td>
+                                    <td>
+                                        This is used to report a player. For reporting you need to define type as report
+                                        in body while sending the request. This is also used to update the status of the
+                                        report data. For that
+                                        send type as status.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" style="font-size: small;">
+                                        https://hello-world-tiny-waterfall-cc7a.abinab.workers.dev?type=playerId&page=1&playerId={PLAYERID}
+                                    </td>
+                                    <td>
+                                        This API is used to get a single player data on the basis of Player id.
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td scope="row" style="font-size: small;">
+                                        https://hello-world-tiny-waterfall-cc7a.abinab.workers.dev?type=reportId&page=1&reportId={REPORTID}
+                                    </td>
+                                    <td>
+                                        This API is used to get a single player data on the basis of report id.
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td scope="row" style="font-size: small;">
+                                        https://hello-world-tiny-waterfall-cc7a.abinab.workers.dev?type=distinct&page=1
+                                    </td>
+                                    <td>
+                                        This API is used to get all the report data. The data are grouped on the basis
+                                        of the reported player ID.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" style="font-size: small;">
+                                        https://blocklist.abinab.workers.dev
+                                    </td>
+                                    <td>
+                                        This is block list api. If we make a post request with type= "block" then we can
+                                        block a user as well as we can unblock by sending type="unblock" . For
+                                        both we need to pass some extra details like the user Id, message as well as a
+                                        Authentication Key.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" style="font-size: small;">
+                                        https://blocklist.abinab.workers.dev?type=one&playerId=${playerId}
+                                    </td>
+                                    <td>
+                                        This API is used to check if a player is in blocklist or not.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" style="font-size: small;">
+                                        https://blocklist.abinab.workers.dev?type=all
+                                    </td>
+                                    <td>
+                                        This API is used to get all the player data those are blocked.
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <thead>
+                                <tr>
+                                    <th scope="col">DATABASE</th>
+                                    <th scope="col">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Collection : Report , DB Name : Gamesapp</td>
+                                    <td>
+                                        The collection report contains all the reported players data. It contains the
+                                        player
+                                        who reported, reason,
+                                        reportId, Status and Message.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Collection : blocklist , DB Name : Gamesapp</td>
+                                    <td>
+                                        The collection contains all the blocked user data.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Collection : unblock , DB Name : Gamesapp</td>
+                                    <td>
+                                        The collection contains all the data of those who are unblocked after blocking
+                                        them.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card text-center" style="background-color: bisque; margin-top: 10px; ">
+            <h1>Report Dashboard</h1>
+            <div class="text-center">
+                <a href="./blocklist.html" class="btn btn-sm btn-dark">Block List</a>
+                <button class="btn btn-sm btn-dark" id="clearFltr">Clear
+                    Filter</button>
+                <button class="btn btn-sm btn-dark" id="clearFltr" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">API Docs.
+                </button>
+            </div>
+            <div class="col-8 m-2">
+                <div class="float-end w-50">
+                    <input type="number" placeholder="Enter Player ID" id="playerIdFilter"
+                        style=" border-radius: 5px; margin-top: 5px; display: block;" class="form-control">
+                    <input type="number" placeholder="Enter Report ID" id="reportIdfilter"
+                        style=" border-radius: 5px; margin-top: 5px; display: block;" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div id="notification" class="text-center">
+
+        </div>
+
+        <div class="container">
+            <div class="modal fade bd-example-modal-xl" id="myModal">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Data</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="container"></div>
+                        <div class="modal-body">
+                            <table class="table table-bordered border my-3">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">FROM ID</th>
+                                        <th scope="col">TO ID</th>
+                                        <th scope="col">REASON</th>
+                                        <th scope="col">REPORTID</th>
+                                        <th scope="col">MESSAGE</th>
+                                        <th scope="col">STATUS</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="modaltable">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal" id="updateStatusModal" data-backdrop="static">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Update Status</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body text-center" id="status-modal-body">
+                            <button id="pendingBtn" class="btn btn-secondary" data-dismiss="modal">PENDING</button>
+                            <button id="reviewBtn" class="btn btn-warning" data-dismiss="modal">IN REVIEW</button>
+                            <button id="resolvedBtn" class="btn btn-success" data-dismiss="modal">RESOLVED</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-bordered border my-3">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Reported Player</th>
+                        <th scope="col">Count</th>
+                        <th scope="col"></th>
+
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center">
+            <button>1</button>
+            <button>2</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>
